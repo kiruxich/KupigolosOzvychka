@@ -197,6 +197,69 @@ function DubbingOverview({ kind, title, description, query, onQuery, count, tota
   );
 }
 
+function MovieAiSearch({ movie }: { movie: MovieVoiceData }) {
+  const [query, setQuery] = useState("");
+  const [recommendationStart, setRecommendationStart] = useState(0);
+  const suggestions = ["Фильм на вечер", "Лучшие фильмы", "Фильмы про космос", "Сериалы про маньяков"];
+  const recommendations = movie.aiRecommendations ?? [];
+  const visibleRecommendations = recommendations.length > 0
+    ? [0, 1, 2].map((offset) => recommendations[(recommendationStart + offset) % recommendations.length])
+    : [];
+
+  function submit(event: FormEvent) {
+    event.preventDefault();
+  }
+
+  return (
+    <section className="movie-ai-block" aria-labelledby="movie-ai-title">
+      <div className="movie-ai-content">
+        <p className="movie-ai-eyebrow">MOVIE AI</p>
+        <h2 id="movie-ai-title">Что посмотреть<br />сегодня?</h2>
+        <p className="movie-ai-lead">Найдите фильм или сериал под настроение, компанию и ваши пожелания.</p>
+        <form className="movie-ai-form" onSubmit={submit}>
+          <label className="sr-only" htmlFor="movie-ai-query">Опишите, что хотите посмотреть</label>
+          <textarea id="movie-ai-query" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Например: хочу напряжённый детектив без мистики и с неожиданной концовкой…" rows={3} />
+          <div className="movie-ai-form-footer"><small>Можно описать настроение, сюжет или любимый фильм</small><button type="submit">Подобрать <Icon name="arrow" size={17} /></button></div>
+        </form>
+        <p className="movie-ai-suggestions-label">Попробуйте</p>
+        <div className="movie-ai-suggestions">
+          {suggestions.map((suggestion) => <button type="button" key={suggestion} onClick={() => setQuery(suggestion)}>{suggestion}</button>)}
+        </div>
+      </div>
+      <div className="movie-ai-recommendations" aria-label="Популярные фильмы сейчас">
+        <div className="movie-ai-poster-stage">
+          {visibleRecommendations.map((recommendation, index) => (
+            <a
+              className={`movie-ai-poster movie-ai-poster-${index}`}
+              href={recommendation.href}
+              key={`${recommendation.title}-${recommendation.rating}`}
+              aria-label={`${recommendation.title}, рейтинг ${recommendation.rating}`}
+            >
+              <img src={recommendation.poster} alt={`Постер: ${recommendation.title}`} loading={index === 1 ? "eager" : "lazy"} decoding="async" />
+              <span>★ {recommendation.rating}</span>
+            </a>
+          ))}
+        </div>
+        <p>Сейчас смотрят</p>
+        <button
+          className="movie-ai-carousel-arrow movie-ai-carousel-arrow-prev"
+          type="button"
+          aria-label="Предыдущие постеры"
+          onClick={() => setRecommendationStart((current) => recommendations.length ? (current - 1 + recommendations.length) % recommendations.length : 0)}
+          disabled={recommendations.length < 2}
+        >←</button>
+        <button
+          className="movie-ai-carousel-arrow movie-ai-carousel-arrow-next"
+          type="button"
+          aria-label="Следующие постеры"
+          onClick={() => setRecommendationStart((current) => recommendations.length ? (current + 1) % recommendations.length : 0)}
+          disabled={recommendations.length < 2}
+        >→</button>
+      </div>
+    </section>
+  );
+}
+
 function SupportingRoleCards({ roles, activeUrl, onAudio }: { roles: { role: FeaturedRole; index: number }[]; activeUrl: string | null; onAudio: (url: string) => void }) {
   return (
     <div className="supporting-role-grid">
@@ -262,6 +325,7 @@ function VoiceCast({ movie }: { movie: MovieVoiceData }) {
 
   return (
     <section className="voice-section wrap" id="voice-cast">
+      <MovieAiSearch movie={movie} />
       <div className="section-intro">
         <div><p className="eyebrow">ПРОВЕРЕННЫЕ ДАННЫЕ ОБ ОЗВУЧКЕ</p><h2>Актёры русского дубляжа</h2></div>
         <p>Выберите версию дубляжа. Имена ведут на подробные страницы персонажей и актёров.</p>

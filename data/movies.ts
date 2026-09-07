@@ -18,6 +18,13 @@ export type CompactRole = {
   voiceUrl: string;
 };
 
+export type AiRecommendation = {
+  title: string;
+  rating: string;
+  poster: string;
+  href: string;
+};
+
 export type MovieVoiceData = {
   slug: string;
   title: string;
@@ -29,6 +36,7 @@ export type MovieVoiceData = {
   genres: string[];
   poster: string;
   backdrop: string;
+  aiRecommendations?: AiRecommendation[];
   synopsis: string;
   primaryDubbing: {
     label: string;
@@ -58,6 +66,44 @@ export const shawshankMovie: MovieVoiceData = {
     "https://image.tmdb.org/t/p/w500/yvmKPlTIi0xdcFQIFcQKQJcI63W.jpg",
   backdrop:
     "https://image.tmdb.org/t/p/original/pNjh59JSxChQktamG3LMp9ZoQzp.jpg",
+  aiRecommendations: [
+    {
+      title: "Человек-паук: Нет пути домой",
+      rating: "7.9",
+      poster: "https://image.tmdb.org/t/p/w500/qad0kyRLHG1Qccp2A0YCCUbvhiD.jpg",
+      href: "https://kupigolos.ru/film/chelovek-pauk-net-puti-domoj-2021/",
+    },
+    {
+      title: "Мстители",
+      rating: "8.1",
+      poster: "https://image.tmdb.org/t/p/w500/ztkYgL0zHJLnEPY5VabK9OlmXxx.jpg",
+      href: "https://kupigolos.ru/film/mstiteli-2012/",
+    },
+    {
+      title: "Аватар: Пламя и пепел",
+      rating: "7.6",
+      poster: "https://image.tmdb.org/t/p/w500/kpxYvaCnbRi7btNnpLCJrehy77e.jpg",
+      href: "https://kupigolos.ru/film/avatar-plamya-i-pepel-2025/",
+    },
+    {
+      title: "Проект «Конец света»",
+      rating: "8.6",
+      poster: "https://image.tmdb.org/t/p/w500/jucD9FzLjVsFfBiFcSdoLa6rPOl.jpg",
+      href: "https://kupigolos.ru/film/proekt-konec-sveta-2026/",
+    },
+    {
+      title: "Вот это драма!",
+      rating: "6.9",
+      poster: "https://image.tmdb.org/t/p/w500/mayjUmmXGM1n5E5AJnOfylig10W.jpg",
+      href: "https://kupigolos.ru/film/vot-ehto-drama-2026/",
+    },
+    {
+      title: "Побег из Шоушенка",
+      rating: "8.7",
+      poster: "https://image.tmdb.org/t/p/w500/yvmKPlTIi0xdcFQIFcQKQJcI63W.jpg",
+      href: "https://kupigolos.ru/film/pobeg-iz-shoushenka-1994/",
+    },
+  ],
   synopsis:
     "Бухгалтер Энди Дюфрейн обвинён в убийстве собственной жены и её любовника. Оказавшись в тюрьме Шоушенк, он сталкивается с жестокостью и беззаконием, но сохраняет человечность, надежду и внутреннюю свободу.",
   primaryDubbing: {

@@ -101,6 +101,42 @@ img { display: block; max-width: 100%; }
 .hero-facts span { color: #766f69; font-size: 12px; }
 
 .voice-section { padding-block: 88px 42px; }
+.movie-ai-block {
+  position: relative; min-height: 590px; margin-bottom: 78px; padding: 40px 0;
+  display: grid; grid-template-columns: minmax(0, .88fr) minmax(0, 1.12fr); gap: 16px; align-items: center;
+  background: transparent;
+}
+.movie-ai-content { position: relative; z-index: 2; min-width: 0; max-width: 100%; }
+.movie-ai-eyebrow { margin: 0 0 21px; color: var(--rust); font-size: 12px; font-weight: 900; letter-spacing: .25em; }
+.movie-ai-content h2 { margin: 0; max-width: 768px; font-size: clamp(50px, 4.5vw, 60px); line-height: .98; letter-spacing: -.06em; }
+.movie-ai-lead { max-width: 610px; margin: 27px 0 0; color: #514b47; font-size: 19px; line-height: 1.45; }
+.movie-ai-form { width: 100%; max-width: 610px; margin-top: 29px; overflow: hidden; border: 1px solid #dedbd5; border-radius: 24px; background: #fff; box-shadow: 0 10px 24px rgba(42,36,31,.06); }
+.movie-ai-form textarea { display: block; width: 100%; min-height: 188px; padding: 24px; resize: none; border: 0; outline: 0; background: transparent; color: var(--ink); font: inherit; font-size: 18px; line-height: 1.55; }
+.movie-ai-form textarea::placeholder { color: #918983; }
+.movie-ai-form-footer { min-height: 81px; padding: 16px; border-top: 1px solid #e6e2dd; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.movie-ai-form-footer small { max-width: 310px; color: #827a74; font-size: 13px; line-height: 1.3; }
+.movie-ai-form-footer button { flex: 0 0 auto; min-height: 48px; padding: 0 22px; border: 0; border-radius: 13px; display: inline-flex; align-items: center; gap: 12px; background: var(--rust); color: #fff; font-weight: 800; cursor: pointer; }
+.movie-ai-form-footer button:hover { background: #d15e43; }
+.movie-ai-suggestions-label { margin: 27px 0 12px; color: #8a817a; font-size: 11px; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; }
+.movie-ai-suggestions { display: flex; flex-wrap: wrap; gap: 8px; }
+.movie-ai-suggestions button { padding: 10px 16px; border: 1px solid #e0dcd7; border-radius: 999px; background: #fff; color: #514b47; font-size: 13px; cursor: pointer; }
+.movie-ai-suggestions button:hover { border-color: #c8806e; color: var(--rust-dark); background: #fff; }
+.movie-ai-recommendations { position: relative; min-width: 0; height: 500px; padding: 0 40px; display: flex; flex-direction: column; justify-content: center; }
+.movie-ai-poster-stage { width: 100%; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); align-items: center; perspective: 1200px; }
+.movie-ai-poster { position: relative; display: block; aspect-ratio: 2 / 3; overflow: hidden; transform-origin: bottom; border-radius: 17px; background: #e9e6e1; box-shadow: 0 24px 42px -20px rgba(32,22,18,.42); transition: transform .5s, filter .5s; }
+.movie-ai-poster:hover { z-index: 2; filter: brightness(1.05); }
+.movie-ai-poster img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.movie-ai-poster:hover img { transform: scale(1.025); }
+.movie-ai-poster-0 { transform: translate(28px, 18px) rotateZ(-7deg); }
+.movie-ai-poster-1 { transform: translate(0, 0) rotateZ(0deg); z-index: 1; }
+.movie-ai-poster-2 { transform: translate(-28px, 18px) rotateZ(7deg); }
+.movie-ai-poster > span { position: absolute; top: 10px; right: 10px; padding: 5px 9px; border-radius: 999px; background: rgba(255,255,255,.95); color: #171514; font-size: 12px; font-weight: 700; box-shadow: 0 2px 5px rgba(0,0,0,.08); }
+.movie-ai-recommendations > p { position: relative; margin: 36px 0 0; text-align: center; color: #69635f; font-size: 12px; letter-spacing: .04em; }
+.movie-ai-carousel-arrow { position: absolute; top: 50%; z-index: 5; width: 40px; height: 40px; padding: 0; display: grid; place-items: center; border: 0; border-radius: 50%; background: #fff; color: var(--ink); font-size: 21px; line-height: 1; box-shadow: 0 10px 20px rgba(32,22,18,.14); cursor: pointer; transform: translateY(-50%); transition: background .2s, color .2s; }
+.movie-ai-carousel-arrow:hover:not(:disabled) { background: var(--rust); color: #fff; }
+.movie-ai-carousel-arrow:disabled { opacity: .45; cursor: default; }
+.movie-ai-carousel-arrow-prev { left: 0; }
+.movie-ai-carousel-arrow-next { right: 0; }
 .section-intro { display: grid; grid-template-columns: 1fr 390px; gap: 80px; align-items: end; margin-bottom: 34px; }
 .section-intro h2, .comments-heading h2 { margin: 0; font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -.035em; }
 .section-intro > p, .comments-heading > p { margin: 0 0 3px; color: var(--muted); line-height: 1.55; }
@@ -315,6 +351,9 @@ img { display: block; max-width: 100%; }
   .mobile-nav a { padding: 13px 2px; border-bottom: 1px solid rgba(255,255,255,.1); text-decoration: none; font-weight: 700; }
   .mobile-nav a:last-child { margin-top: 8px; border: 0; color: #ef987f; }
   .breadcrumbs { height: 60px; }
+  .movie-ai-block { min-height: 0; margin-bottom: 60px; padding: 30px 0 0; grid-template-columns: 1fr; gap: 30px; }
+  .movie-ai-content { width: 100%; }
+  .movie-ai-recommendations { width: 100%; height: 430px; padding-inline: 34px; }
   .hero { min-height: auto; }
   .hero-backdrop { inset: 0; opacity: .36; background-position: 60% top; }
   .hero-wash { background: linear-gradient(0deg, #fff 14%, rgba(255,255,255,.93) 49%, rgba(255,255,255,.64) 100%); }
@@ -355,6 +394,22 @@ img { display: block; max-width: 100%; }
   .hero-facts div { min-width: 0; flex: 1; padding-right: 10px; margin-right: 10px; }
   .hero-facts strong { font-size: 20px; }
   .voice-section { padding-top: 60px; }
+  .movie-ai-block { margin-bottom: 54px; padding: 25px 0 0; gap: 20px; }
+  .movie-ai-eyebrow { margin-bottom: 17px; }
+  .movie-ai-content h2 { font-size: clamp(48px, 15vw, 68px); }
+  .movie-ai-lead { margin-top: 21px; font-size: 16px; }
+  .movie-ai-form { margin-top: 22px; padding: 9px; border-radius: 18px; }
+  .movie-ai-form textarea { min-height: 150px; padding: 18px 16px; font-size: 16px; }
+  .movie-ai-form-footer { align-items: stretch; flex-direction: column; padding: 11px 5px 3px 10px; gap: 11px; }
+  .movie-ai-form-footer small { max-width: none; }
+  .movie-ai-form-footer button { justify-content: center; }
+  .movie-ai-suggestions-label { margin-top: 21px; }
+  .movie-ai-recommendations { height: 300px; padding-inline: 25px; }
+  .movie-ai-poster-0 { transform: translate(15px, 12px) rotateZ(-7deg); }
+  .movie-ai-poster-2 { transform: translate(-15px, 12px) rotateZ(7deg); }
+  .movie-ai-poster > span { top: 6px; right: 6px; padding: 4px 7px; font-size: 10px; }
+  .movie-ai-recommendations > p { margin-top: 25px; }
+  .movie-ai-carousel-arrow { width: 34px; height: 34px; font-size: 18px; }
   .section-intro h2, .comments-heading h2 { font-size: 39px; }
   .dubbing-tabs { display: flex; overflow-x: auto; margin: 0 -14px 18px; padding: 0 14px 5px; border-radius: 0; scrollbar-width: none; }
   .dubbing-tabs::-webkit-scrollbar { display: none; }
