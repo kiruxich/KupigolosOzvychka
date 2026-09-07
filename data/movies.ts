@@ -1,57 +1,7 @@
-export type FeaturedRole = {
-  character: string;
-  originalActor: string;
-  voiceActor: string;
-  characterImage: string;
-  voiceImage: string;
-  characterPosition?: string;
-  characterUrl?: string;
-  voiceUrl: string;
-  audioUrl?: string;
-  description?: string;
-  otherRoles?: string;
-};
+import generatedMovieData from "@/data/generated/movies.json";
+import type { MovieVoiceData } from "@/data/movie-types";
 
-export type CompactRole = {
-  character: string;
-  voiceActor: string;
-  voiceUrl: string;
-};
-
-export type AiRecommendation = {
-  title: string;
-  rating: string;
-  poster: string;
-  href: string;
-};
-
-export type MovieVoiceData = {
-  slug: string;
-  title: string;
-  originalTitle: string;
-  year: number;
-  country: string;
-  duration: string;
-  ageRating: string;
-  genres: string[];
-  poster: string;
-  backdrop: string;
-  aiRecommendations?: AiRecommendation[];
-  synopsis: string;
-  primaryDubbing: {
-    label: string;
-    year: number;
-    featured: FeaturedRole[];
-    secondary: FeaturedRole[];
-    additionalVoices: CompactRole[];
-  };
-  alternativeDubbing: {
-    label: string;
-    year: number;
-    featuredCount: number;
-    roles: FeaturedRole[];
-  };
-};
+export type { AiRecommendation, CompactRole, DubbingVersion, FeaturedRole, MovieVoiceData } from "@/data/movie-types";
 
 export const shawshankMovie: MovieVoiceData = {
   slug: "film-pobeg-iz-shoushenka",
@@ -399,9 +349,9 @@ export const shawshankMovie: MovieVoiceData = {
   },
 };
 
-const movies: Record<string, MovieVoiceData> = {
-  [shawshankMovie.slug]: shawshankMovie,
-};
+const generatedMovies = generatedMovieData as MovieVoiceData[];
+const movies: Record<string, MovieVoiceData> = Object.fromEntries(generatedMovies.map((movie) => [movie.slug, movie]));
+movies[shawshankMovie.slug] = shawshankMovie;
 
 export function getMovieBySlug(slug: string) {
   return movies[slug];

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { MovieVoicePage } from "@/components/MovieVoicePage";
 import { getAllMovieSlugs, getMovieBySlug } from "@/data/movies";
+import { getMovieDubbings } from "@/data/movie-types";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -14,6 +15,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const movie = getMovieBySlug(slug);
 
   if (!movie) return {};
+  const dubbings = getMovieDubbings(movie);
+  const primaryDubbing = dubbings[0];
 
   return {
     title: `Кто озвучил «${movie.title}» — актёры русского дубляжа`,
@@ -23,7 +26,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     alternates: { canonical: `https://kupigolos.ru/kto-ozvuchivaet/${movie.slug}` },
     openGraph: {
       title: `Актёры русского дубляжа фильма «${movie.title}»`,
-      description: `${movie.primaryDubbing.featured.length} главных ролей и две версии русского дубляжа.`,
+      description: `${primaryDubbing?.featuredCount ?? 0} главных ролей и ${dubbings.length} ${dubbings.length === 1 ? "версия" : "версии"} русского дубляжа.`,
       url: `https://kupigolos.ru/kto-ozvuchivaet/${movie.slug}`,
       siteName: "КупиГолос",
       locale: "ru_RU",
@@ -45,6 +48,9 @@ export default async function VoiceCastPage({ params }: PageProps) {
 
   if (!movie) notFound();
 
+  const dubbings = getMovieDubbings(movie);
+  const primaryDubbing = dubbings[0];
+  const featuredRoles = primaryDubbing?.roles.slice(0, primaryDubbing.featuredCount) ?? [];
   const pageUrl = `https://kupigolos.ru/kto-ozvuchivaet/${movie.slug}`;
   const structuredData = {
     "@context": "https://schema.org",
@@ -71,11 +77,11 @@ export default async function VoiceCastPage({ params }: PageProps) {
       {
         "@type": "ItemList",
         name: `Актёры русского дубляжа фильма «${movie.title}»`,
-        numberOfItems: movie.primaryDubbing.featured.length,
-        itemListElement: movie.primaryDubbing.featured.map((role, index) => ({
+        numberOfItems: featuredRoles.length,
+        itemListElement: featuredRoles.map((role, index) => ({
           "@type": "ListItem",
           position: index + 1,
-          item: { "@type": "Person", name: role.voiceActor, url: role.voiceUrl },
+          item: { "@type": "Person", name: role.voiceActor, ...(role.voiceUrl ? { url: role.voiceUrl } : {}) },
         })),
       },
     ],

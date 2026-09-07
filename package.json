@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "sync:movies": "node scripts/sync-movies.mjs"
   },
   "dependencies": {
     "next": "latest",
@@ -17,6 +18,7 @@
     "@types/node": "latest",
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "cheerio": "^1.2.0",
     "typescript": "latest"
   }
 }

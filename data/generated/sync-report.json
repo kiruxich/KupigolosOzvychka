@@ -1,0 +1,878 @@
+{
+  "generatedAt": "2026-09-07T16:17:44.110Z",
+  "policy": "Текстовые данные — только info.kupigolos.ru и kupigolos.ru; внешние URL используются только для изображений.",
+  "infoFilmCount": 1127,
+  "voiceCatalogCount": 336,
+  "scannedInfoCount": 1127,
+  "fullCastLinkCount": 1077,
+  "matchedCount": 1077,
+  "generatedCount": 1077,
+  "exactMatches": 201,
+  "fuzzyMatches": [],
+  "unmatchedInfo": [
+    "https://info.kupigolos.ru/film/villi-vonka-i-shokoladnaya-fabrika-1971/",
+    "https://info.kupigolos.ru/film/kvartira-1960/",
+    "https://info.kupigolos.ru/film/mehri-poppins-1964/",
+    "https://info.kupigolos.ru/film/pokidaya-las-vegas-1995/",
+    "https://info.kupigolos.ru/film/romeo-dzhuletta-1996/",
+    "https://info.kupigolos.ru/film/ehrin-brokovich-2000/",
+    "https://info.kupigolos.ru/film/monstr-2003/",
+    "https://info.kupigolos.ru/film/kazino-1995/",
+    "https://info.kupigolos.ru/film/steklyannyj-dom-2001/",
+    "https://info.kupigolos.ru/film/bolshoj-1988/",
+    "https://info.kupigolos.ru/film/lestnica-iakova-1990/",
+    "https://info.kupigolos.ru/film/prikazano-unichtozhit-1996/",
+    "https://info.kupigolos.ru/film/pole-chudes-1989/",
+    "https://info.kupigolos.ru/film/aehroplan-2-prodolzhenie-1982/",
+    "https://info.kupigolos.ru/film/adaptaciya-2002/",
+    "https://info.kupigolos.ru/film/moralnye-cennosti-semejki-addams-1993/",
+    "https://info.kupigolos.ru/film/luchshe-ne-byvaet-1997/",
+    "https://info.kupigolos.ru/film/lak-dlya-volos-2007/",
+    "https://info.kupigolos.ru/film/noch-ohotnika-1955/",
+    "https://info.kupigolos.ru/film/prervannaya-zhizn-1999/",
+    "https://info.kupigolos.ru/film/rokovoe-chislo-23-2007/",
+    "https://info.kupigolos.ru/film/iskuplenie-2007/",
+    "https://info.kupigolos.ru/film/seks-v-bolshom-gorode-2008/",
+    "https://info.kupigolos.ru/film/proshchaj-detka-proshchaj-2007/",
+    "https://info.kupigolos.ru/film/sloyonyj-tort-2004/",
+    "https://info.kupigolos.ru/film/10-prichin-moej-nenavisti-1999/",
+    "https://info.kupigolos.ru/film/internehshnl-2009/",
+    "https://info.kupigolos.ru/film/nochi-v-stile-bugi-1997/",
+    "https://info.kupigolos.ru/film/poslednij-iz-mogikan-1992/",
+    "https://info.kupigolos.ru/film/vojna-2007/",
+    "https://info.kupigolos.ru/film/tyomnyj-kristall-1982/",
+    "https://info.kupigolos.ru/film/garold-i-kumar-pobeg-iz-guantanamo-2008/",
+    "https://info.kupigolos.ru/film/luzery-2010/",
+    "https://info.kupigolos.ru/film/zimnyaya-kost-2010/",
+    "https://info.kupigolos.ru/film/hochu-kak-ty-2011/",
+    "https://info.kupigolos.ru/film/bednaya-bogataya-devochka-2011/",
+    "https://info.kupigolos.ru/film/ucelevshij-2013/",
+    "https://info.kupigolos.ru/film/delo-richarda-dzhuehlla-2019/",
+    "https://info.kupigolos.ru/film/spektralnyj-2016/",
+    "https://info.kupigolos.ru/film/nerv-2016/",
+    "https://info.kupigolos.ru/film/overdrajv-2017/",
+    "https://info.kupigolos.ru/film/vojna-tokov-2018/",
+    "https://info.kupigolos.ru/film/ochen-plohie-mamochki-2-2017/",
+    "https://info.kupigolos.ru/film/nochnye-igry-2018/",
+    "https://info.kupigolos.ru/film/zhizn-za-god-2020/",
+    "https://info.kupigolos.ru/film/lyubov-i-monstry-2020/",
+    "https://info.kupigolos.ru/film/neproshchennaya-2021/",
+    "https://info.kupigolos.ru/film/maj-dekabr-2023/",
+    "https://info.kupigolos.ru/film/bajkery-2024/",
+    "https://info.kupigolos.ru/film/obi-van-kenobi-vozvrashchenie-dzhedaya-2022/"
+  ],
+  "unmatchedVoiceCatalog": [
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-1-plus-1-gollivudskaya-istoriya",
+      "slug": "1-plus-1-gollivudskaya-istoriya",
+      "title": "1+1: Голливудская история",
+      "year": 2018
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ehkstrasensy",
+      "slug": "ehkstrasensy",
+      "title": "Экстрасенсы",
+      "year": 2014
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-bunt-ushastyh",
+      "slug": "bunt-ushastyh",
+      "title": "Бунт ушастых",
+      "year": 2011
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-neskolko-dnej-v-sentyabre",
+      "slug": "neskolko-dnej-v-sentyabre",
+      "title": "Несколько дней в сентябре",
+      "year": 2006
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-esli-svekrov-monstr",
+      "slug": "esli-svekrov-monstr",
+      "title": "Если свекровь — монстр…",
+      "year": 2005
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-prakticheskaya-magiya",
+      "slug": "prakticheskaya-magiya",
+      "title": "Практическая магия",
+      "year": 1998
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ohotniki-za-privideniyami-ledenyashchij-uzhas",
+      "slug": "ohotniki-za-privideniyami-ledenyashchij-uzhas",
+      "title": "Охотники за привидениями: Леденящий ужас",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ohotniki-za-privideniyami-2",
+      "slug": "ohotniki-za-privideniyami-2",
+      "title": "Охотники за привидениями",
+      "year": 2016
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ohotniki-za-privideniyami",
+      "slug": "ohotniki-za-privideniyami",
+      "title": "Охотники за привидениями",
+      "year": 1984
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-shyopot-za-oknom",
+      "slug": "shyopot-za-oknom",
+      "title": "Шёпот за окном",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-myatezh",
+      "slug": "myatezh",
+      "title": "Мятеж",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-na-krayu-ouk-strit",
+      "slug": "na-krayu-ouk-strit",
+      "title": "На краю Оук-стрит",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zhertva-obstoyatelstv",
+      "slug": "zhertva-obstoyatelstv",
+      "title": "Жертва обстоятельств",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-moana-3",
+      "slug": "moana-3",
+      "title": "Моана",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-chelovek-pauk-novyj-den",
+      "slug": "chelovek-pauk-novyj-den",
+      "title": "Человек-паук: Новый день",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-sekretnyj-agent",
+      "slug": "sekretnyj-agent",
+      "title": "Секретный агент",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-hamnet-istoriya-vdohnovivshaya-gamleta",
+      "slug": "hamnet-istoriya-vdohnovivshaya-gamleta",
+      "title": "Хамнет: История, вдохновившая «Гамлета»",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-otec-mat-sestra-brat",
+      "slug": "otec-mat-sestra-brat",
+      "title": "Отец мать сестра брат",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-mandalorec-i-grogu",
+      "slug": "mandalorec-i-grogu",
+      "title": "Мандалорец и Грогу",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-m3gan-2-0",
+      "slug": "m3gan-2-0",
+      "title": "М3ГАН 2.0",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-m3gan",
+      "slug": "m3gan",
+      "title": "М3ГАН",
+      "year": 2022
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-iks",
+      "slug": "iks",
+      "title": "Икс",
+      "year": 2022
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-skajlajn-3",
+      "slug": "skajlajn-3",
+      "title": "Скайлайн 3",
+      "year": 2020
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vlyubis-v-menya-esli-osmelishsya",
+      "slug": "vlyubis-v-menya-esli-osmelishsya",
+      "title": "Влюбись в меня, если осмелишься",
+      "year": 2003
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-behtmen-i-robin",
+      "slug": "behtmen-i-robin",
+      "title": "Бэтмен и Робин",
+      "year": 1997
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-behtmen-navsegda",
+      "slug": "behtmen-navsegda",
+      "title": "Бэтмен навсегда",
+      "year": 1995
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-behtmen-vozvrashchaetsya",
+      "slug": "behtmen-vozvrashchaetsya",
+      "title": "Бэтмен возвращается",
+      "year": 1992
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-behtmen-2",
+      "slug": "behtmen-2",
+      "title": "Бэтмен",
+      "year": 1989
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-odisseya",
+      "slug": "odisseya",
+      "title": "Одиссея",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zloveshchie-mertvecy-peklo",
+      "slug": "zloveshchie-mertvecy-peklo",
+      "title": "Зловещие мертвецы: Пекло",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-priglashenie",
+      "slug": "priglashenie",
+      "title": "Приглашение",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-sledstvie-vedut-ovechki",
+      "slug": "sledstvie-vedut-ovechki",
+      "title": "Следствие ведут овечки",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-sosedi-sverhu",
+      "slug": "sosedi-sverhu",
+      "title": "Соседи сверху",
+      "year": 2020
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-na-pyatdesyat-ottenkov-temnee",
+      "slug": "na-pyatdesyat-ottenkov-temnee",
+      "title": "На пятьдесят оттенков темнее",
+      "year": 2017
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-liga-spravedlivosti",
+      "slug": "liga-spravedlivosti",
+      "title": "Лига справедливости",
+      "year": 2017
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zloveshchie-mertvecy-chyornaya-kniga",
+      "slug": "zloveshchie-mertvecy-chyornaya-kniga",
+      "title": "Зловещие мертвецы: Чёрная книга",
+      "year": 2013
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-skubi-du-2-monstry-na-svobode",
+      "slug": "skubi-du-2-monstry-na-svobode",
+      "title": "Скуби-Ду 2: Монстры на свободе",
+      "year": 2004
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-skubi-du-2",
+      "slug": "skubi-du-2",
+      "title": "Скуби-Ду",
+      "year": 2002
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-kosmicheskij-dzhem",
+      "slug": "kosmicheskij-dzhem",
+      "title": "Космический джем",
+      "year": 1996
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-dzhumandzhi",
+      "slug": "dzhumandzhi",
+      "title": "Джуманджи",
+      "year": 1995
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vossoedinenie-semejki-addams",
+      "slug": "vossoedinenie-semejki-addams",
+      "title": "Воссоединение семейки Аддамс",
+      "year": 1998
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-supergyorl",
+      "slug": "supergyorl",
+      "title": "Супергёрл",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-nochnoj-biznes",
+      "slug": "nochnoj-biznes",
+      "title": "Ночной бизнес",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-kodeks-dante",
+      "slug": "kodeks-dante",
+      "title": "Кодекс Данте",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-davlenie",
+      "slug": "davlenie",
+      "title": "Давление",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-den-razoblacheniya",
+      "slug": "den-razoblacheniya",
+      "title": "День разоблачения",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ochen-strashnoe-kino-6",
+      "slug": "ochen-strashnoe-kino-6",
+      "title": "Очень страшное кино",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-passazhir",
+      "slug": "passazhir",
+      "title": "Пассажир",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-den-rozhdeniya",
+      "slug": "den-rozhdeniya",
+      "title": "День рождения",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zakulise-realnosti",
+      "slug": "zakulise-realnosti",
+      "title": "Закулисье реальности",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-planeta-obezyan-novoe-carstvo",
+      "slug": "planeta-obezyan-novoe-carstvo",
+      "title": "Планета обезьян: Новое царство",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-planeta-obezyan-vojna",
+      "slug": "planeta-obezyan-vojna",
+      "title": "Планета обезьян: Война",
+      "year": 2017
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-planeta-obezyan-revolyuciya",
+      "slug": "planeta-obezyan-revolyuciya",
+      "title": "Планета обезьян: Революция",
+      "year": 2014
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vosstanie-planety-obezyan",
+      "slug": "vosstanie-planety-obezyan",
+      "title": "Восстание планеты обезьян",
+      "year": 2011
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-planeta-obezyan-2",
+      "slug": "planeta-obezyan-2",
+      "title": "Планета обезьян",
+      "year": 2001
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-planeta-obezyan",
+      "slug": "planeta-obezyan",
+      "title": "Планета обезьян",
+      "year": 1968
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-super-krejzi",
+      "slug": "super-krejzi",
+      "title": "Супер крейзи",
+      "year": 2018
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-spusk-2",
+      "slug": "spusk-2",
+      "title": "Спуск 2",
+      "year": 2009
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-spusk",
+      "slug": "spusk",
+      "title": "Спуск",
+      "year": 2005
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-garfild",
+      "slug": "garfild",
+      "title": "Гарфилд",
+      "year": 2004
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-hokum",
+      "slug": "hokum",
+      "title": "Хокум",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-obsessiya",
+      "slug": "obsessiya",
+      "title": "Обсессия",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-gryaznye-dengi",
+      "slug": "gryaznye-dengi",
+      "title": "Грязные деньги",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-neobychajno-umnye-sozdaniya",
+      "slug": "neobychajno-umnye-sozdaniya",
+      "title": "Необычайно умные создания",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-mortal-kombat-2",
+      "slug": "mortal-kombat-2",
+      "title": "Мортал Комбат 2",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-majkl",
+      "slug": "majkl",
+      "title": "Майкл",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vverh-po-volshebnomu-derevu",
+      "slug": "vverh-po-volshebnomu-derevu",
+      "title": "Вверх по волшебному дереву",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-dyavol-nosit-prada-2",
+      "slug": "dyavol-nosit-prada-2",
+      "title": "Дьявол носит Prada 2",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-flehsh",
+      "slug": "flehsh",
+      "title": "Флэш",
+      "year": 2023
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-kapitan-marvel-2",
+      "slug": "kapitan-marvel-2",
+      "title": "Капитан Марвел 2",
+      "year": 2023
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-mstiteli-vojna-beskonechnosti",
+      "slug": "mstiteli-vojna-beskonechnosti",
+      "title": "Мстители: Война бесконечности",
+      "year": 2018
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-miduehj",
+      "slug": "miduehj",
+      "title": "Мидуэй",
+      "year": 2019
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-neproshchyonnaya",
+      "slug": "neproshchyonnaya",
+      "title": "Непрощённая",
+      "year": 2021
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ehnola-holms",
+      "slug": "ehnola-holms",
+      "title": "Энола Холмс",
+      "year": 2020
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-tajler-rejk-operaciya-po-spaseniyu",
+      "slug": "tajler-rejk-operaciya-po-spaseniyu",
+      "title": "Тайлер Рейк: Операция по спасению",
+      "year": 2020
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-neogranyonnye-almazy",
+      "slug": "neogranyonnye-almazy",
+      "title": "Неогранённые алмазы",
+      "year": 2019
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-korol-anglii",
+      "slug": "korol-anglii",
+      "title": "Король Англии",
+      "year": 2019
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-v-pogone-za-bonni-i-klajdom",
+      "slug": "v-pogone-za-bonni-i-klajdom",
+      "title": "В погоне за Бонни и Клайдом",
+      "year": 2019
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ubijstvo-na-yahte",
+      "slug": "ubijstvo-na-yahte",
+      "title": "Убийство на яхте",
+      "year": 2019
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ptichij-korob",
+      "slug": "ptichij-korob",
+      "title": "Птичий короб",
+      "year": 2018
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ballada-bastera-skraggsa",
+      "slug": "ballada-bastera-skraggsa",
+      "title": "Баллада Бастера Скраггса",
+      "year": 2018
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ya-idu-iskat-2",
+      "slug": "ya-idu-iskat-2",
+      "title": "Я иду искать 2",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-mumiya-2",
+      "slug": "mumiya-2",
+      "title": "Мумия",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-guru",
+      "slug": "guru",
+      "title": "Гуру",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-padenie-londona",
+      "slug": "padenie-londona",
+      "title": "Падение Лондона",
+      "year": 2015
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-primat",
+      "slug": "primat",
+      "title": "Примат",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-kaznit-nelzya-pomilovat",
+      "slug": "kaznit-nelzya-pomilovat",
+      "title": "Казнить нельзя помиловать",
+      "year": 2026
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zvyozdnye-vojny-probuzhdenie-sily",
+      "slug": "zvyozdnye-vojny-probuzhdenie-sily",
+      "title": "Звёздные войны: Пробуждение Силы",
+      "year": 2015
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zvyozdnye-vojny-vozvrashchenie-dzhedaya",
+      "slug": "zvyozdnye-vojny-vozvrashchenie-dzhedaya",
+      "title": "Звёздные войны: Возвращение джедая",
+      "year": 1983
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zvyozdnye-vojny-imperiya-nanosit-otvetnyj-udar",
+      "slug": "zvyozdnye-vojny-imperiya-nanosit-otvetnyj-udar",
+      "title": "Звёздные войны: Империя наносит ответный удар",
+      "year": 1980
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zvyozdnye-vojny-novaya-nadezhda",
+      "slug": "zvyozdnye-vojny-novaya-nadezhda",
+      "title": "Звёздные войны: Новая надежда",
+      "year": 1977
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zvyozdnye-vojny-mest-sithov",
+      "slug": "zvyozdnye-vojny-mest-sithov",
+      "title": "Звёздные войны: Месть ситхов",
+      "year": 2005
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zvyozdnye-vojny-ataka-klonov",
+      "slug": "zvyozdnye-vojny-ataka-klonov",
+      "title": "Звёздные войны: Атака клонов",
+      "year": 2002
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zvyozdnye-vojny-skrytaya-ugroza",
+      "slug": "zvyozdnye-vojny-skrytaya-ugroza",
+      "title": "Звёздные войны: Скрытая угроза",
+      "year": 1999
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-8-zhenshchin",
+      "slug": "8-zhenshchin",
+      "title": "8 женщин",
+      "year": 2001
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-shelbi-ouks-gorod-prizrak",
+      "slug": "shelbi-ouks-gorod-prizrak",
+      "title": "Шелби-Оукс: Город-призрак",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-muvi-43",
+      "slug": "muvi-43",
+      "title": "Муви 43",
+      "year": 2012
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-ehdem",
+      "slug": "ehdem",
+      "title": "Эдем",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vrata-v-3d",
+      "slug": "vrata-v-3d",
+      "title": "Врата в 3D",
+      "year": 2009
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-hishchnik-3",
+      "slug": "hishchnik-3",
+      "title": "Хищник (2018)",
+      "year": 2018
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-drakula",
+      "slug": "drakula",
+      "title": "Дракула",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vyhod-8",
+      "slug": "vyhod-8",
+      "title": "Выход 8",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-drevo-zhizni",
+      "slug": "drevo-zhizni",
+      "title": "Древо жизни",
+      "year": 2010
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-fantasticheskaya-chetvyorka-pervye-shagi",
+      "slug": "fantasticheskaya-chetvyorka-pervye-shagi",
+      "title": "Фантастическая четвёрка: Первые шаги",
+      "year": 2025
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-savan",
+      "slug": "savan",
+      "title": "Саван",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-fantasticheskaya-chetvyorka-vtorzhenie-serebryanogo-syorfera",
+      "slug": "fantasticheskaya-chetvyorka-vtorzhenie-serebryanogo-syorfera",
+      "title": "Фантастическая четвёрка: Вторжение Серебряного сёрфера",
+      "year": 2007
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-umri-no-ne-sejchas",
+      "slug": "umri-no-ne-sejchas",
+      "title": "Умри, но не сейчас",
+      "year": 2002
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-i-celogo-mira-malo",
+      "slug": "i-celogo-mira-malo",
+      "title": "И целого мира мало",
+      "year": 1999
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zavtra-ne-umryot-nikogda",
+      "slug": "zavtra-ne-umryot-nikogda",
+      "title": "Завтра не умрёт никогда",
+      "year": 1997
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zolotoj-glaz",
+      "slug": "zolotoj-glaz",
+      "title": "Золотой глаз",
+      "year": 1995
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-licenziya-na-ubijstvo",
+      "slug": "licenziya-na-ubijstvo",
+      "title": "Лицензия на убийство",
+      "year": 1989
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-iskry-iz-glaz",
+      "slug": "iskry-iz-glaz",
+      "title": "Искры из глаз",
+      "year": 1987
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zhizn-chaka",
+      "slug": "zhizn-chaka",
+      "title": "Жизнь Чака",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vid-na-ubijstvo",
+      "slug": "vid-na-ubijstvo",
+      "title": "Вид на убийство",
+      "year": 1985
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-osminozhka",
+      "slug": "osminozhka",
+      "title": "Осьминожка",
+      "year": 1983
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-tolko-dlya-tvoih-glaz",
+      "slug": "tolko-dlya-tvoih-glaz",
+      "title": "Только для твоих глаз",
+      "year": 1981
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-lunnyj-gonshchik",
+      "slug": "lunnyj-gonshchik",
+      "title": "Лунный гонщик",
+      "year": 1979
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-shpion-kotoryj-menya-lyubil",
+      "slug": "shpion-kotoryj-menya-lyubil",
+      "title": "Шпион, который меня любил",
+      "year": 1977
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-chelovek-s-zolotym-pistoletom",
+      "slug": "chelovek-s-zolotym-pistoletom",
+      "title": "Человек с золотым пистолетом",
+      "year": 1974
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zhivi-i-daj-umeret",
+      "slug": "zhivi-i-daj-umeret",
+      "title": "Живи и дай умереть",
+      "year": 1973
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vernyj-drug",
+      "slug": "vernyj-drug",
+      "title": "Верный друг",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-syorfer",
+      "slug": "syorfer",
+      "title": "Сёрфер",
+      "year": 2024
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-brillianty-navsegda",
+      "slug": "brillianty-navsegda",
+      "title": "Бриллианты навсегда",
+      "year": 1971
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-na-sekretnoj-sluzhbe-eyo-velichestva",
+      "slug": "na-sekretnoj-sluzhbe-eyo-velichestva",
+      "title": "На секретной службе Её Величества",
+      "year": 1969
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-zhivyosh-tolko-dvazhdy",
+      "slug": "zhivyosh-tolko-dvazhdy",
+      "title": "Живёшь только дважды",
+      "year": 1967
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-sharovaya-molniya",
+      "slug": "sharovaya-molniya",
+      "title": "Шаровая молния",
+      "year": 1965
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-goldfinger",
+      "slug": "goldfinger",
+      "title": "Голдфингер",
+      "year": 1964
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-iz-rossii-s-lyubovyu",
+      "slug": "iz-rossii-s-lyubovyu",
+      "title": "Из России с любовью",
+      "year": 1963
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-doktor-nou",
+      "slug": "doktor-nou",
+      "title": "Доктор Ноу",
+      "year": 1962
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-prizraki-vojny",
+      "slug": "prizraki-vojny",
+      "title": "Призраки войны",
+      "year": 2019
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-lemoni-sniket-33-neschastya",
+      "slug": "lemoni-sniket-33-neschastya",
+      "title": "Лемони Сникет: 33 несчастья",
+      "year": 2004
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-maksimalnyj-udar",
+      "slug": "maksimalnyj-udar",
+      "title": "Максимальный удар",
+      "year": 2017
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-krasnyj-zmej",
+      "slug": "krasnyj-zmej",
+      "title": "Красный змей",
+      "year": 2003
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-vnutri-lyuina-dehvisa",
+      "slug": "vnutri-lyuina-dehvisa",
+      "title": "Внутри Льюина Дэвиса",
+      "year": 2012
+    },
+    {
+      "url": "https://kupigolos.ru/kto-ozvuchivaet/film-krushenie-mira",
+      "slug": "krushenie-mira",
+      "title": "Крушение мира",
+      "year": 2024
+    }
+  ],
+  "infoErrors": [],
+  "errors": []
+}

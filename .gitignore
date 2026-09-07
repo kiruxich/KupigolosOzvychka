@@ -18,6 +18,9 @@
 # testing
 /coverage
 
+# local content sync cache
+/.cache/
+
 # env
 .env*
 !.env.example

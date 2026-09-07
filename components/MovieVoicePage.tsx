@@ -1,9 +1,16 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
-import type { FeaturedRole, MovieVoiceData } from "@/data/movies";
+import { getMovieDubbings, type FeaturedRole, type MovieVoiceData } from "@/data/movie-types";
 
-type TabId = "primary" | "alternative";
+const defaultAiRecommendations = [
+  { title: "Человек-паук: Нет пути домой", rating: "7.9", poster: "https://image.tmdb.org/t/p/w500/qad0kyRLHG1Qccp2A0YCCUbvhiD.jpg", href: "https://info.kupigolos.ru/film/chelovek-pauk-net-puti-domoj-2021/" },
+  { title: "Мстители", rating: "8.1", poster: "https://image.tmdb.org/t/p/w500/ztkYgL0zHJLnEPY5VabK9OlmXxx.jpg", href: "https://info.kupigolos.ru/film/mstiteli-2012/" },
+  { title: "Аватар: Пламя и пепел", rating: "7.6", poster: "https://image.tmdb.org/t/p/w500/kpxYvaCnbRi7btNnpLCJrehy77e.jpg", href: "https://info.kupigolos.ru/film/avatar-plamya-i-pepel-2025/" },
+  { title: "Проект «Конец света»", rating: "8.6", poster: "https://image.tmdb.org/t/p/w500/jucD9FzLjVsFfBiFcSdoLa6rPOl.jpg", href: "https://info.kupigolos.ru/film/proekt-konec-sveta-2026/" },
+  { title: "Вот это драма!", rating: "6.9", poster: "https://image.tmdb.org/t/p/w500/mayjUmmXGM1n5E5AJnOfylig10W.jpg", href: "https://info.kupigolos.ru/film/vot-ehto-drama-2026/" },
+  { title: "Побег из Шоушенка", rating: "8.7", poster: "https://image.tmdb.org/t/p/w500/yvmKPlTIi0xdcFQIFcQKQJcI63W.jpg", href: "https://info.kupigolos.ru/film/pobeg-iz-shoushenka-1994/" },
+];
 
 function Icon({ name, size = 20 }: { name: "play" | "pause" | "phone" | "heart" | "menu" | "arrow" | "mic" | "search" | "wave" | "film"; size?: number }) {
   const paths = {
@@ -57,6 +64,9 @@ function Header() {
 }
 
 function Hero({ movie }: { movie: MovieVoiceData }) {
+  const dubbings = getMovieDubbings(movie);
+  const primaryDubbing = dubbings[0];
+
   return (
     <>
       <div className="breadcrumbs wrap" aria-label="Хлебные крошки">
@@ -86,9 +96,9 @@ function Hero({ movie }: { movie: MovieVoiceData }) {
             </div>
             <p className="synopsis">{movie.synopsis}</p>
             <div className="hero-facts">
-              <div><strong>{movie.primaryDubbing.featured.length}</strong><span>главных ролей</span></div>
-              <div><strong>2</strong><span>версии дубляжа</span></div>
-              <div><strong>{movie.primaryDubbing.year}</strong><span>основной дубляж</span></div>
+              <div><strong>{primaryDubbing?.featuredCount ?? 0}</strong><span>главных ролей</span></div>
+              <div><strong>{dubbings.length}</strong><span>{dubbings.length === 1 ? "версия дубляжа" : "версии дубляжа"}</span></div>
+              <div><strong>{primaryDubbing?.year ?? "—"}</strong><span>основной дубляж</span></div>
             </div>
           </div>
         </div>
@@ -142,7 +152,22 @@ function FeaturedRoleCard({ role, index, activeUrl, onAudio, concise = false }: 
     <>
       <img src={role.characterImage} alt={role.character} loading={concise ? "eager" : "lazy"} decoding="async" style={role.characterPosition ? { objectPosition: role.characterPosition } : undefined} />
       <span className="portrait-gradient" />
-      <span className="portrait-caption"><small>Персонаж</small><strong>{role.character}</strong><em>{role.originalActor}</em></span>
+      <span className="portrait-caption"><small>Персонаж</small><strong>{role.character}</strong>{role.originalActor && <em>{role.originalActor}</em>}</span>
+    </>
+  );
+  const voicePortrait = (
+    <>
+      <img
+        src={role.voiceImage}
+        alt={role.voiceActor}
+        loading={concise ? "eager" : "lazy"}
+        decoding="async"
+        onError={(event) => {
+          if (!event.currentTarget.src.endsWith("/images/voice-placeholder.svg")) event.currentTarget.src = "/images/voice-placeholder.svg";
+        }}
+      />
+      <span className="portrait-gradient" />
+      <span className="portrait-caption"><small>Русский голос</small><strong>{role.voiceActor}</strong><em>Актёр дубляжа</em></span>
     </>
   );
 
@@ -152,19 +177,7 @@ function FeaturedRoleCard({ role, index, activeUrl, onAudio, concise = false }: 
       <div className="portrait-pair">
         {role.characterUrl ? <a className="portrait-tile character-tile" href={role.characterUrl}>{characterPortrait}</a> : <div className="portrait-tile character-tile">{characterPortrait}</div>}
         <span className="pair-link" aria-hidden="true"><Icon name="wave" size={24} /></span>
-        <a className="portrait-tile voice-tile" href={role.voiceUrl}>
-          <img
-            src={role.voiceImage}
-            alt={role.voiceActor}
-            loading={concise ? "eager" : "lazy"}
-            decoding="async"
-            onError={(event) => {
-              if (!event.currentTarget.src.endsWith("/images/voice-placeholder.svg")) event.currentTarget.src = "/images/voice-placeholder.svg";
-            }}
-          />
-          <span className="portrait-gradient" />
-          <span className="portrait-caption"><small>Русский голос</small><strong>{role.voiceActor}</strong><em>Актёр дубляжа</em></span>
-        </a>
+        {role.voiceUrl ? <a className="portrait-tile voice-tile" href={role.voiceUrl}>{voicePortrait}</a> : <div className="portrait-tile voice-tile">{voicePortrait}</div>}
       </div>
       {role.audioUrl ? (
         <VoicePreview url={role.audioUrl} name={role.voiceActor} isPlaying={activeUrl === role.audioUrl} onToggle={() => onAudio(role.audioUrl!)} />
@@ -200,8 +213,7 @@ function DubbingOverview({ kind, title, description, query, onQuery, count, tota
 function MovieAiSearch({ movie }: { movie: MovieVoiceData }) {
   const [query, setQuery] = useState("");
   const [recommendationStart, setRecommendationStart] = useState(0);
-  const suggestions = ["Фильм на вечер", "Лучшие фильмы", "Фильмы про космос", "Сериалы про маньяков"];
-  const recommendations = movie.aiRecommendations ?? [];
+  const recommendations = movie.aiRecommendations?.length ? movie.aiRecommendations : defaultAiRecommendations;
   const visibleRecommendations = recommendations.length > 0
     ? [0, 1, 2].map((offset) => recommendations[(recommendationStart + offset) % recommendations.length])
     : [];
@@ -221,10 +233,6 @@ function MovieAiSearch({ movie }: { movie: MovieVoiceData }) {
           <textarea id="movie-ai-query" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Например: хочу напряжённый детектив без мистики и с неожиданной концовкой…" rows={3} />
           <div className="movie-ai-form-footer"><small>Можно описать настроение, сюжет или любимый фильм</small><button type="submit">Подобрать <Icon name="arrow" size={17} /></button></div>
         </form>
-        <p className="movie-ai-suggestions-label">Попробуйте</p>
-        <div className="movie-ai-suggestions">
-          {suggestions.map((suggestion) => <button type="button" key={suggestion} onClick={() => setQuery(suggestion)}>{suggestion}</button>)}
-        </div>
       </div>
       <div className="movie-ai-recommendations" aria-label="Популярные фильмы сейчас">
         <div className="movie-ai-poster-stage">
@@ -272,10 +280,10 @@ function SupportingRoleCards({ roles, activeUrl, onAudio }: { roles: { role: Fea
             <div className="supporting-pair">
               <div className="supporting-person">
                 <img src={role.characterImage} alt={role.character} loading="lazy" decoding="async" style={role.characterPosition ? { objectPosition: role.characterPosition } : undefined} />
-                <div><small>Персонаж</small><strong>{role.character}</strong><em>{role.originalActor}</em></div>
+                <div><small>Персонаж</small><strong>{role.character}</strong>{role.originalActor && <em>{role.originalActor}</em>}</div>
               </div>
               <span className="supporting-connection" aria-hidden="true"><Icon name="wave" size={18} /></span>
-              <a className="supporting-person supporting-voice" href={role.voiceUrl}>
+              {role.voiceUrl ? <a className="supporting-person supporting-voice" href={role.voiceUrl}>
                 <img
                   src={role.voiceImage}
                   alt={role.voiceActor}
@@ -286,7 +294,10 @@ function SupportingRoleCards({ roles, activeUrl, onAudio }: { roles: { role: Fea
                   }}
                 />
                 <div><small>Русский голос</small><strong>{role.voiceActor}</strong><em>Актёр дубляжа</em></div>
-              </a>
+              </a> : <div className="supporting-person supporting-voice">
+                <img src={role.voiceImage} alt={role.voiceActor} loading="lazy" decoding="async" />
+                <div><small>Русский голос</small><strong>{role.voiceActor}</strong><em>Актёр дубляжа</em></div>
+              </div>}
             </div>
             {role.audioUrl ? (
               <button className={`supporting-audio ${isPlaying ? "is-playing" : ""}`} type="button" onClick={() => onAudio(role.audioUrl!)}>
@@ -304,91 +315,83 @@ function SupportingRoleCards({ roles, activeUrl, onAudio }: { roles: { role: Fea
 }
 
 function VoiceCast({ movie }: { movie: MovieVoiceData }) {
-  const [tab, setTab] = useState<TabId>("primary");
-  const [primaryQuery, setPrimaryQuery] = useState("");
-  const [alternativeQuery, setAlternativeQuery] = useState("");
+  const dubbings = getMovieDubbings(movie);
+  const [tab, setTab] = useState(dubbings[0]?.id ?? "");
+  const [queries, setQueries] = useState<Record<string, string>>({});
   const { activeUrl, toggle } = useAudioPreview();
-  const normalizedPrimaryQuery = primaryQuery.trim().toLocaleLowerCase("ru");
-  const normalizedAlternativeQuery = alternativeQuery.trim().toLocaleLowerCase("ru");
-  const primaryFeatured = movie.primaryDubbing.featured.map((role, index) => ({ role, index }));
-  const primarySupporting = movie.primaryDubbing.secondary.map((role, index) => ({ role, index: movie.primaryDubbing.featured.length + index }));
-  const indexedAlternativeRoles = movie.alternativeDubbing.roles.map((role, index) => ({ role, index }));
-  const alternativeFeatured = indexedAlternativeRoles.slice(0, movie.alternativeDubbing.featuredCount);
-  const alternativeSupporting = indexedAlternativeRoles.slice(movie.alternativeDubbing.featuredCount);
+  const activeDubbing = dubbings.find((dubbing) => dubbing.id === tab) ?? dubbings[0];
+  const query = activeDubbing ? queries[activeDubbing.id] ?? "" : "";
+  const normalizedQuery = query.trim().toLocaleLowerCase("ru");
+  const indexedRoles = activeDubbing?.roles.map((role, index) => ({ role, index })) ?? [];
+  const featuredCount = Math.min(activeDubbing?.featuredCount ?? 0, indexedRoles.length);
+  const featured = indexedRoles.slice(0, featuredCount);
+  const supporting = indexedRoles.slice(featuredCount);
   const roleText = ({ role }: { role: FeaturedRole }) => `${role.character} ${role.originalActor} ${role.voiceActor}`.toLocaleLowerCase("ru");
-  const filteredPrimaryFeatured = primaryFeatured.filter((item) => !normalizedPrimaryQuery || roleText(item).includes(normalizedPrimaryQuery));
-  const filteredPrimarySupporting = primarySupporting.filter((item) => !normalizedPrimaryQuery || roleText(item).includes(normalizedPrimaryQuery));
-  const filteredAlternativeFeatured = alternativeFeatured.filter((item) => !normalizedAlternativeQuery || roleText(item).includes(normalizedAlternativeQuery));
-  const filteredAlternativeSupporting = alternativeSupporting.filter((item) => !normalizedAlternativeQuery || roleText(item).includes(normalizedAlternativeQuery));
-  const filteredPrimaryCount = filteredPrimaryFeatured.length + filteredPrimarySupporting.length;
-  const filteredAlternativeCount = filteredAlternativeFeatured.length + filteredAlternativeSupporting.length;
+  const filteredFeatured = featured.filter((item) => !normalizedQuery || roleText(item).includes(normalizedQuery));
+  const filteredSupporting = supporting.filter((item) => !normalizedQuery || roleText(item).includes(normalizedQuery));
+  const filteredCount = filteredFeatured.length + filteredSupporting.length;
+  const activeIndex = Math.max(0, dubbings.findIndex((dubbing) => dubbing.id === activeDubbing?.id));
+  const isPrimary = activeIndex === 0;
+  const panelId = `${activeDubbing?.id ?? "dubbing"}-dubbing`;
+  const headingSuffix = activeDubbing?.year && !activeDubbing.label.includes(String(activeDubbing.year)) ? ` ${activeDubbing.year} года` : "";
 
   return (
     <section className="voice-section wrap" id="voice-cast">
       <MovieAiSearch movie={movie} />
-      <div className="section-intro">
-        <div><p className="eyebrow">ПРОВЕРЕННЫЕ ДАННЫЕ ОБ ОЗВУЧКЕ</p><h2>Актёры русского дубляжа</h2></div>
-        <p>Выберите версию дубляжа. Имена ведут на подробные страницы персонажей и актёров.</p>
-      </div>
-      <div className="dubbing-tabs" role="tablist" aria-label="Версия дубляжа">
-        <button className={tab === "primary" ? "active" : ""} type="button" role="tab" aria-selected={tab === "primary"} aria-controls="primary-dubbing" onClick={() => setTab("primary")}>
-          <span>{movie.primaryDubbing.label}</span><strong>{movie.primaryDubbing.year}</strong><em>{movie.primaryDubbing.featured.length} основных · {movie.primaryDubbing.secondary.length} дополнительных</em>
-        </button>
-        <button className={tab === "alternative" ? "active" : ""} type="button" role="tab" aria-selected={tab === "alternative"} aria-controls="alternative-dubbing" onClick={() => setTab("alternative")}>
-          <span>{movie.alternativeDubbing.label}</span><strong>{movie.alternativeDubbing.year}</strong><em>{alternativeFeatured.length} основных · {alternativeSupporting.length} дополнительных</em>
-        </button>
-      </div>
-
-      {tab === "primary" ? (
-        <div className="dubbing-tabpanel" role="tabpanel" id="primary-dubbing">
-          <DubbingOverview kind="primary" title="Основной дубляж 2018 года" description="Полный проверенный состав и доступные аудиопримеры." query={primaryQuery} onQuery={setPrimaryQuery} count={filteredPrimaryCount} total={primaryFeatured.length + primarySupporting.length} />
-          {filteredPrimaryCount > 0 ? (
-            <>
-              {filteredPrimaryFeatured.length > 0 && (
-                <section className="dubbing-cast-group" aria-labelledby="primary-main-heading">
-                  <div className="cast-group-heading"><div><p className="eyebrow">КЛЮЧЕВЫЕ РОЛИ</p><h3 id="primary-main-heading">Основные персонажи</h3></div><span>{filteredPrimaryFeatured.length}</span></div>
-                  <div className="role-grid">
-                    {filteredPrimaryFeatured.map(({ role, index }) => <FeaturedRoleCard key={role.character} role={role} index={index} activeUrl={activeUrl} onAudio={toggle} />)}
-                  </div>
-                </section>
-              )}
-              {filteredPrimarySupporting.length > 0 && (
-                <section className="secondary-panel" aria-labelledby="primary-supporting-heading">
-                  <div className="cast-group-heading"><div><p className="eyebrow">ОСТАЛЬНОЙ СОСТАВ</p><h3 id="primary-supporting-heading">Второстепенные персонажи</h3></div><span>{filteredPrimarySupporting.length}</span></div>
-                  <SupportingRoleCards roles={filteredPrimarySupporting} activeUrl={activeUrl} onAudio={toggle} />
-                  {!normalizedPrimaryQuery && <div className="additional-voice"><span>Дополнительные голоса</span>{movie.primaryDubbing.additionalVoices.map((role) => <a href={role.voiceUrl} key={role.voiceActor}>{role.voiceActor} <Icon name="arrow" size={17} /></a>)}</div>}
-                </section>
-              )}
-            </>
-          ) : (
-            <p className="empty-roles">По этому запросу ролей не найдено.</p>
-          )}
+      <div className="voice-cast-surface">
+        <div className="section-intro">
+          <div><p className="eyebrow">ПРОВЕРЕННЫЕ ДАННЫЕ ОБ ОЗВУЧКЕ</p><h2>Актёры русского дубляжа</h2></div>
+          <p>{dubbings.length > 1 ? "Выберите версию дубляжа. " : ""}Имена ведут на подробные страницы персонажей и актёров.</p>
         </div>
-      ) : (
-        <div className="dubbing-tabpanel" role="tabpanel" id="alternative-dubbing">
-          <DubbingOverview kind="alternative" title="Альтернативный дубляж 2021 года" description="Карточки персонажей, актёров дубляжа и доступные аудиопримеры." query={alternativeQuery} onQuery={setAlternativeQuery} count={filteredAlternativeCount} total={movie.alternativeDubbing.roles.length} />
-          {filteredAlternativeCount > 0 ? (
-            <>
-              {filteredAlternativeFeatured.length > 0 && (
-                <section className="dubbing-cast-group" aria-labelledby="alternative-main-heading">
-                  <div className="cast-group-heading"><div><p className="eyebrow">КЛЮЧЕВЫЕ РОЛИ</p><h3 id="alternative-main-heading">Основные персонажи</h3></div><span>{filteredAlternativeFeatured.length}</span></div>
-                  <div className="role-grid alternative-role-grid">
-                    {filteredAlternativeFeatured.map(({ role, index }) => <FeaturedRoleCard key={`${role.character}-${role.voiceActor}`} role={role} index={index} activeUrl={activeUrl} onAudio={toggle} concise />)}
-                  </div>
-                </section>
-              )}
-              {filteredAlternativeSupporting.length > 0 && (
-                <section className="secondary-panel alternative-secondary-panel" aria-labelledby="alternative-supporting-heading">
-                  <div className="cast-group-heading"><div><p className="eyebrow">ОСТАЛЬНОЙ СОСТАВ</p><h3 id="alternative-supporting-heading">Второстепенные персонажи</h3></div><span>{filteredAlternativeSupporting.length}</span></div>
-                  <SupportingRoleCards roles={filteredAlternativeSupporting} activeUrl={activeUrl} onAudio={toggle} />
-                </section>
-              )}
-            </>
-          ) : (
-            <p className="empty-roles">По этому запросу ролей не найдено.</p>
-          )}
-        </div>
-      )}
+        {activeDubbing && (
+          <>
+          <div className={`dubbing-tabs ${dubbings.length === 1 ? "single" : ""}`} role="tablist" aria-label="Версия дубляжа">
+            {dubbings.map((dubbing) => {
+              const dubbingFeaturedCount = Math.min(dubbing.featuredCount, dubbing.roles.length);
+              return (
+                <button className={activeDubbing.id === dubbing.id ? "active" : ""} type="button" role="tab" aria-selected={activeDubbing.id === dubbing.id} aria-controls={`${dubbing.id}-dubbing`} onClick={() => setTab(dubbing.id)} key={dubbing.id}>
+                  <span>{dubbing.label}</span><strong>{dubbing.year ?? "—"}</strong><em>{dubbingFeaturedCount} основных · {dubbing.roles.length - dubbingFeaturedCount} дополнительных</em>
+                </button>
+              );
+            })}
+          </div>
+          <div className="dubbing-tabpanel" role="tabpanel" id={panelId}>
+            <DubbingOverview
+              kind={isPrimary ? "primary" : "alternative"}
+              title={`${isPrimary ? "Основной дубляж" : activeDubbing.label}${headingSuffix}`}
+              description={isPrimary ? "Полный проверенный состав и доступные аудиопримеры." : "Карточки персонажей, актёров дубляжа и доступные аудиопримеры."}
+              query={query}
+              onQuery={(value) => setQueries((current) => ({ ...current, [activeDubbing.id]: value }))}
+              count={filteredCount}
+              total={indexedRoles.length}
+            />
+            {filteredCount > 0 ? (
+              <>
+                {filteredFeatured.length > 0 && (
+                  <section className="dubbing-cast-group" aria-labelledby={`${activeDubbing.id}-main-heading`}>
+                    <div className="cast-group-heading"><div><p className="eyebrow">КЛЮЧЕВЫЕ РОЛИ</p><h3 id={`${activeDubbing.id}-main-heading`}>Основные персонажи</h3></div><span>{filteredFeatured.length}</span></div>
+                    <div className={`role-grid ${isPrimary ? "" : "alternative-role-grid"}`}>
+                      {filteredFeatured.map(({ role, index }) => <FeaturedRoleCard key={`${role.character}-${role.voiceActor}`} role={role} index={index} activeUrl={activeUrl} onAudio={toggle} concise={!isPrimary} />)}
+                    </div>
+                  </section>
+                )}
+                {filteredSupporting.length > 0 && (
+                  <section className={`secondary-panel ${isPrimary ? "" : "alternative-secondary-panel"}`} aria-labelledby={`${activeDubbing.id}-supporting-heading`}>
+                    <div className="cast-group-heading"><div><p className="eyebrow">ОСТАЛЬНОЙ СОСТАВ</p><h3 id={`${activeDubbing.id}-supporting-heading`}>Второстепенные персонажи</h3></div><span>{filteredSupporting.length}</span></div>
+                    <SupportingRoleCards roles={filteredSupporting} activeUrl={activeUrl} onAudio={toggle} />
+                  </section>
+                )}
+                {!normalizedQuery && Boolean(activeDubbing.additionalVoices?.length) && (
+                  <div className="additional-voice"><span>Дополнительные голоса</span>{activeDubbing.additionalVoices?.map((role) => <a href={role.voiceUrl} key={`${role.voiceActor}-${role.voiceUrl}`}>{role.voiceActor} <Icon name="arrow" size={17} /></a>)}</div>
+                )}
+              </>
+            ) : (
+              <p className="empty-roles">По этому запросу ролей не найдено.</p>
+            )}
+          </div>
+          </>
+        )}
+      </div>
     </section>
   );
 }
