@@ -3,7 +3,7 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { getMovieDubbings, type FeaturedRole, type MovieVoiceData } from "@/data/movie-types";
 
-function Icon({ name, size = 20 }: { name: "play" | "pause" | "phone" | "heart" | "menu" | "arrow" | "mic" | "search" | "wave" | "film"; size?: number }) {
+function Icon({ name, size = 20 }: { name: "play" | "pause" | "phone" | "heart" | "menu" | "arrow" | "mic" | "search" | "wave" | "film" | "sparkle"; size?: number }) {
   const paths = {
     play: <path d="M8 5v14l11-7L8 5Z" fill="currentColor" stroke="none" />,
     pause: <path d="M7 5h4v14H7zm7 0h4v14h-4z" fill="currentColor" stroke="none" />,
@@ -15,6 +15,7 @@ function Icon({ name, size = 20 }: { name: "play" | "pause" | "phone" | "heart" 
     search: <><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4 4" /></>,
     wave: <path d="M3 12h2m2-4v8m4-11v14m4-11v8m2-4h4" />,
     film: <><rect x="3" y="6" width="18" height="14" rx="2" /><path d="M3 10h18M7 6l2-4m3 4 2-4m3 4 2-4" /></>,
+    sparkle: <><path d="M12 2c.7 5.3 4.7 9.3 10 10-5.3.7-9.3 4.7-10 10-.7-5.3-4.7-9.3-10-10 5.3-.7 9.3-4.7 10-10Z" /><path d="M19 2v4M21 4h-4" /></>,
   };
 
   return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{paths[name]}</svg>;
@@ -201,8 +202,21 @@ function DubbingOverview({ kind, title, description, query, onQuery, count, tota
   );
 }
 
+const movieAiPrompts = [
+  "Хочу напряжённый детектив без мистики…",
+  "Нужна добрая комедия на вечер…",
+  "Посоветуй фантастику с неожиданным финалом…",
+];
+
 function MovieAiSearch() {
   const [query, setQuery] = useState("");
+  const [promptIndex, setPromptIndex] = useState(0);
+
+  useEffect(() => {
+    if (query) return;
+    const interval = window.setInterval(() => setPromptIndex((current) => (current + 1) % movieAiPrompts.length), 3600);
+    return () => window.clearInterval(interval);
+  }, [query]);
 
   function submit(event: FormEvent) {
     event.preventDefault();
@@ -211,14 +225,24 @@ function MovieAiSearch() {
   return (
     <section className="movie-ai-block" aria-labelledby="movie-ai-title">
       <div className="movie-ai-content">
-        <p className="movie-ai-eyebrow">MOVIE AI</p>
-        <h2 id="movie-ai-title">Что посмотреть<br />сегодня?</h2>
+        <div className="movie-ai-label">
+          <p className="movie-ai-eyebrow">MOVIE AI</p>
+          <span className="movie-ai-signal" aria-hidden="true"><i /><i /><i /><i /><i /></span>
+        </div>
+        <h2 id="movie-ai-title">Что посмотреть сегодня?</h2>
         <p className="movie-ai-lead">Найдите фильм или сериал под настроение, компанию и ваши пожелания.</p>
       </div>
       <form className="movie-ai-form" onSubmit={submit}>
         <label className="sr-only" htmlFor="movie-ai-query">Опишите, что хотите посмотреть</label>
-        <textarea id="movie-ai-query" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Например: хочу напряжённый детектив без мистики и с неожиданной концовкой…" rows={3} />
-        <div className="movie-ai-form-footer"><small>Можно описать настроение, сюжет или любимый фильм</small><button type="submit">Подобрать <Icon name="arrow" size={17} /></button></div>
+        <div className="movie-ai-command">
+          <span className="movie-ai-sparkle" aria-hidden="true"><Icon name="sparkle" size={18} /></span>
+          <div className="movie-ai-input">
+            {!query && <span className="movie-ai-prompt" key={promptIndex}>{movieAiPrompts[promptIndex]}</span>}
+            <textarea id="movie-ai-query" value={query} onChange={(event) => setQuery(event.target.value)} rows={1} />
+          </div>
+          <button type="submit">Подобрать <Icon name="arrow" size={17} /></button>
+        </div>
+        <small className="movie-ai-helper">Можно описать настроение, сюжет или любимый фильм</small>
       </form>
     </section>
   );
@@ -272,11 +296,9 @@ function SupportingRoleCards({ roles, activeUrl, onAudio }: { roles: { role: Fea
 
 function VoiceCast({ movie }: { movie: MovieVoiceData }) {
   const dubbings = getMovieDubbings(movie);
-  const [tab, setTab] = useState(dubbings[0]?.id ?? "");
-  const [queries, setQueries] = useState<Record<string, string>>({});
+  const [query, setQuery] = useState("");
   const { activeUrl, toggle } = useAudioPreview();
-  const activeDubbing = dubbings.find((dubbing) => dubbing.id === tab) ?? dubbings[0];
-  const query = activeDubbing ? queries[activeDubbing.id] ?? "" : "";
+  const activeDubbing = dubbings[0];
   const normalizedQuery = query.trim().toLocaleLowerCase("ru");
   const indexedRoles = activeDubbing?.roles.map((role, index) => ({ role, index })) ?? [];
   const featuredCount = Math.min(activeDubbing?.featuredCount ?? 0, indexedRoles.length);
@@ -286,9 +308,6 @@ function VoiceCast({ movie }: { movie: MovieVoiceData }) {
   const filteredFeatured = featured.filter((item) => !normalizedQuery || roleText(item).includes(normalizedQuery));
   const filteredSupporting = supporting.filter((item) => !normalizedQuery || roleText(item).includes(normalizedQuery));
   const filteredCount = filteredFeatured.length + filteredSupporting.length;
-  const activeIndex = Math.max(0, dubbings.findIndex((dubbing) => dubbing.id === activeDubbing?.id));
-  const isPrimary = activeIndex === 0;
-  const panelId = `${activeDubbing?.id ?? "dubbing"}-dubbing`;
   const headingSuffix = activeDubbing?.year && !activeDubbing.label.includes(String(activeDubbing.year)) ? ` ${activeDubbing.year} года` : "";
 
   return (
@@ -301,23 +320,13 @@ function VoiceCast({ movie }: { movie: MovieVoiceData }) {
         </div>
         {activeDubbing && (
           <>
-          <div className={`dubbing-tabs ${dubbings.length === 1 ? "single" : ""}`} role="tablist" aria-label="Версия дубляжа">
-            {dubbings.map((dubbing) => {
-              const dubbingFeaturedCount = Math.min(dubbing.featuredCount, dubbing.roles.length);
-              return (
-                <button className={activeDubbing.id === dubbing.id ? "active" : ""} type="button" role="tab" aria-selected={activeDubbing.id === dubbing.id} aria-controls={`${dubbing.id}-dubbing`} onClick={() => setTab(dubbing.id)} key={dubbing.id}>
-                  <span>{dubbing.label}</span><strong>{dubbing.year ?? "—"}</strong><em>{dubbingFeaturedCount} основных · {dubbing.roles.length - dubbingFeaturedCount} дополнительных</em>
-                </button>
-              );
-            })}
-          </div>
-          <div className="dubbing-tabpanel" role="tabpanel" id={panelId}>
+          <div className="dubbing-tabpanel">
             <DubbingOverview
-              kind={isPrimary ? "primary" : "alternative"}
-              title={`${isPrimary ? "Основной дубляж" : activeDubbing.label}${headingSuffix}`}
-              description={isPrimary ? "Полный проверенный состав и доступные аудиопримеры." : "Карточки персонажей, актёров дубляжа и доступные аудиопримеры."}
+              kind="primary"
+              title={`Основной дубляж${headingSuffix}`}
+              description="Полный проверенный состав и доступные аудиопримеры."
               query={query}
-              onQuery={(value) => setQueries((current) => ({ ...current, [activeDubbing.id]: value }))}
+              onQuery={setQuery}
               count={filteredCount}
               total={indexedRoles.length}
             />
@@ -326,13 +335,13 @@ function VoiceCast({ movie }: { movie: MovieVoiceData }) {
                 {filteredFeatured.length > 0 && (
                   <section className="dubbing-cast-group" aria-labelledby={`${activeDubbing.id}-main-heading`}>
                     <div className="cast-group-heading"><div><p className="eyebrow">КЛЮЧЕВЫЕ РОЛИ</p><h3 id={`${activeDubbing.id}-main-heading`}>Основные персонажи</h3></div><span>{filteredFeatured.length}</span></div>
-                    <div className={`role-grid ${isPrimary ? "" : "alternative-role-grid"}`}>
-                      {filteredFeatured.map(({ role, index }) => <FeaturedRoleCard key={`${role.character}-${role.voiceActor}`} role={role} index={index} activeUrl={activeUrl} onAudio={toggle} concise={!isPrimary} />)}
+                    <div className="role-grid">
+                      {filteredFeatured.map(({ role, index }) => <FeaturedRoleCard key={`${role.character}-${role.voiceActor}`} role={role} index={index} activeUrl={activeUrl} onAudio={toggle} />)}
                     </div>
                   </section>
                 )}
                 {filteredSupporting.length > 0 && (
-                  <section className={`secondary-panel ${isPrimary ? "" : "alternative-secondary-panel"}`} aria-labelledby={`${activeDubbing.id}-supporting-heading`}>
+                  <section className="secondary-panel" aria-labelledby={`${activeDubbing.id}-supporting-heading`}>
                     <div className="cast-group-heading"><div><p className="eyebrow">ОСТАЛЬНОЙ СОСТАВ</p><h3 id={`${activeDubbing.id}-supporting-heading`}>Второстепенные персонажи</h3></div><span>{filteredSupporting.length}</span></div>
                     <SupportingRoleCards roles={filteredSupporting} activeUrl={activeUrl} onAudio={toggle} />
                   </section>

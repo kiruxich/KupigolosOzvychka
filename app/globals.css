@@ -102,21 +102,35 @@ img { display: block; max-width: 100%; }
 
 .voice-section { padding-block: 88px 42px; }
 .movie-ai-block {
-  position: relative; min-height: 260px; margin-bottom: 68px; padding: 18px 0;
-  display: grid; grid-template-columns: minmax(0, .82fr) minmax(460px, 1.18fr); gap: clamp(48px, 7vw, 112px); align-items: center;
-  background: transparent; transform: translateY(-18px);
+  position: relative; min-height: 156px; margin-bottom: 64px; padding: 24px 28px;
+  display: grid; grid-template-columns: minmax(250px, .78fr) minmax(380px, 1.22fr); gap: clamp(34px, 5vw, 76px); align-items: center;
+  overflow: hidden; border: 1px solid rgba(116,104,95,.14); border-radius: 26px;
+  background: rgba(255,255,255,.68); box-shadow: 0 12px 34px rgba(48,40,35,.045); transform: translateY(-18px);
 }
+.movie-ai-block::before { content: ""; position: absolute; inset: 0 auto 0 0; width: 3px; background: var(--rust); opacity: .82; }
 .movie-ai-content { position: relative; z-index: 2; min-width: 0; max-width: 470px; }
-.movie-ai-eyebrow { margin: 0 0 13px; color: var(--rust); font-size: 11px; font-weight: 900; letter-spacing: .25em; }
-.movie-ai-content h2 { margin: 0; max-width: 620px; font-size: clamp(40px, 3.7vw, 46px); line-height: .98; letter-spacing: -.055em; }
-.movie-ai-lead { max-width: 540px; margin: 16px 0 0; color: #514b47; font-size: 16px; line-height: 1.45; }
-.movie-ai-form { width: 100%; max-width: 620px; margin: 0; justify-self: end; overflow: hidden; border: 1px solid #dedbd5; border-radius: 20px; background: #fff; box-shadow: 0 8px 20px rgba(42,36,31,.05); }
-.movie-ai-form textarea { display: block; width: 100%; min-height: 88px; padding: 16px 18px; resize: none; border: 0; outline: 0; background: transparent; color: var(--ink); font: inherit; font-size: 15px; line-height: 1.45; }
-.movie-ai-form textarea::placeholder { color: #918983; }
-.movie-ai-form-footer { min-height: 54px; padding: 7px 10px 7px 14px; border-top: 1px solid #e6e2dd; display: flex; justify-content: space-between; align-items: center; gap: 14px; }
-.movie-ai-form-footer small { max-width: 290px; color: #827a74; font-size: 11px; line-height: 1.3; }
-.movie-ai-form-footer button { flex: 0 0 auto; min-height: 42px; padding: 0 18px; border: 0; border-radius: 12px; display: inline-flex; align-items: center; gap: 10px; background: var(--rust); color: #fff; font-size: 14px; font-weight: 800; cursor: pointer; }
-.movie-ai-form-footer button:hover { background: #d15e43; }
+.movie-ai-label { display: flex; align-items: center; gap: 11px; margin-bottom: 10px; }
+.movie-ai-eyebrow { margin: 0; color: var(--rust); font-size: 10px; font-weight: 900; letter-spacing: .25em; }
+.movie-ai-signal { width: 28px; height: 14px; display: flex; align-items: center; justify-content: center; gap: 2px; color: var(--rust); }
+.movie-ai-signal i { width: 2px; height: 4px; border-radius: 999px; background: currentColor; animation: movie-ai-wave 1.15s ease-in-out infinite; transform-origin: center; }
+.movie-ai-signal i:nth-child(2), .movie-ai-signal i:nth-child(4) { animation-delay: -.35s; }
+.movie-ai-signal i:nth-child(3) { animation-delay: -.7s; }
+.movie-ai-content h2 { margin: 0; max-width: 470px; font-size: clamp(29px, 2.5vw, 34px); line-height: 1; letter-spacing: -.045em; white-space: nowrap; }
+.movie-ai-lead { max-width: 430px; margin: 9px 0 0; color: #625b56; font-size: 12px; line-height: 1.4; }
+.movie-ai-form { width: 100%; max-width: 650px; margin: 0; justify-self: end; }
+.movie-ai-command { min-height: 66px; padding: 7px; display: grid; grid-template-columns: 42px minmax(0, 1fr) auto; gap: 8px; align-items: center; border: 1px solid #dcd7d1; border-radius: 18px; background: #fff; box-shadow: 0 8px 20px rgba(42,36,31,.05); transition: border-color .22s ease, box-shadow .22s ease, transform .22s ease; }
+.movie-ai-command:focus-within { border-color: rgba(189,80,54,.5); box-shadow: 0 10px 28px rgba(77,52,43,.09), 0 0 0 3px rgba(189,80,54,.07); transform: translateY(-1px); }
+.movie-ai-sparkle { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; color: var(--rust); background: #f7ece8; }
+.movie-ai-input { position: relative; }
+.movie-ai-form textarea { position: relative; z-index: 1; display: block; width: 100%; min-height: 42px; max-height: 62px; padding: 11px 6px; resize: none; overflow: auto; border: 0; outline: 0; background: transparent; color: var(--ink); font: inherit; font-size: 14px; line-height: 1.4; }
+.movie-ai-prompt { position: absolute; z-index: 0; inset: 11px 6px auto; overflow: hidden; color: #918983; font-size: 14px; line-height: 1.4; white-space: nowrap; text-overflow: ellipsis; pointer-events: none; animation: movie-ai-prompt 3.6s ease both; }
+.movie-ai-command button { min-height: 46px; padding: 0 18px; border: 0; border-radius: 13px; display: inline-flex; align-items: center; gap: 9px; background: var(--rust); color: #fff; font-size: 13px; font-weight: 800; cursor: pointer; }
+.movie-ai-command button:hover { background: #d15e43; }
+.movie-ai-command button svg { transition: transform .2s ease; }
+.movie-ai-command button:hover svg { transform: translateX(4px); }
+.movie-ai-helper { display: block; margin: 8px 0 0 13px; color: #827a74; font-size: 10px; line-height: 1.3; }
+@keyframes movie-ai-wave { 0%, 100% { transform: scaleY(.7); opacity: .55; } 50% { transform: scaleY(3); opacity: 1; } }
+@keyframes movie-ai-prompt { 0% { opacity: 0; transform: translateY(4px); } 12%, 82% { opacity: 1; transform: translateY(0); } 100% { opacity: 0; transform: translateY(-3px); } }
 .voice-cast-surface { position: relative; z-index: 0; isolation: isolate; padding-bottom: 16px; }
 .voice-cast-surface::before {
   content: ""; position: absolute; z-index: -2; top: -30px; bottom: -42px; left: 50%; width: 100vw;
@@ -129,24 +143,6 @@ img { display: block; max-width: 100%; }
 .section-intro { display: grid; grid-template-columns: 1fr 390px; gap: 80px; align-items: end; margin-bottom: 34px; }
 .section-intro h2, .comments-heading h2 { margin: 0; font-size: clamp(36px, 4vw, 56px); line-height: 1; letter-spacing: -.035em; }
 .section-intro > p, .comments-heading > p { margin: 0 0 3px; color: var(--muted); line-height: 1.55; }
-.dubbing-tabs {
-  display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
-  margin: 0 0 18px; padding: 0; border: 0; background: transparent; box-shadow: none;
-}
-.dubbing-tabs.single { grid-template-columns: 1fr; }
-.dubbing-tabs button {
-  position: relative; min-height: 112px; padding: 22px 28px; border-radius: 24px; border: 1px solid var(--line);
-  background: rgba(255,255,255,.72); color: var(--ink); cursor: pointer; text-align: left;
-  display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto auto; align-items: center;
-  transition: transform .2s, border-color .2s, background .2s;
-}
-.dubbing-tabs button:hover { transform: translateY(-2px); border-color: #bcb5ad; }
-.dubbing-tabs button.active { background: var(--dark); color: #fff; border-color: var(--dark); box-shadow: 0 15px 35px rgba(36,32,30,.16); }
-.dubbing-tabs button span { font-weight: 800; font-size: 19px; }
-.dubbing-tabs button strong { grid-row: 1 / 3; grid-column: 2; font-size: 32px; letter-spacing: -.04em; color: var(--rust); }
-.dubbing-tabs button.active strong { color: #ef987f; }
-.dubbing-tabs button em { font-style: normal; color: #857d77; font-size: 13px; }
-.dubbing-tabs button.active em { color: #bdb7b3; }
 
 .role-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .role-card {
@@ -323,6 +319,7 @@ img { display: block; max-width: 100%; }
   .hero-grid { grid-template-columns: 260px 1fr; gap: 34px; }
   .poster-shell > img { width: 260px; }
   .hero h1 { font-size: 55px; }
+  .movie-ai-content h2 { white-space: normal; }
   .footer-grid { grid-template-columns: 1.2fr repeat(2, 1fr); }
   .footer-grid > div:nth-child(4), .footer-grid > div:nth-child(5) { margin-top: 12px; }
 }
@@ -341,7 +338,7 @@ img { display: block; max-width: 100%; }
   .mobile-nav a { padding: 13px 2px; border-bottom: 1px solid rgba(255,255,255,.1); text-decoration: none; font-weight: 700; }
   .mobile-nav a:last-child { margin-top: 8px; border: 0; color: #ef987f; }
   .breadcrumbs { height: 60px; }
-  .movie-ai-block { min-height: 0; margin-bottom: 60px; padding: 20px 0 0; grid-template-columns: 1fr; gap: 22px; transform: translateY(-10px); }
+  .movie-ai-block { min-height: 0; margin-bottom: 60px; padding: 24px; grid-template-columns: 1fr; gap: 22px; transform: translateY(-10px); }
   .movie-ai-content { width: 100%; }
   .movie-ai-form { max-width: none; justify-self: stretch; }
   .hero { min-height: auto; }
@@ -384,20 +381,18 @@ img { display: block; max-width: 100%; }
   .hero-facts div { min-width: 0; flex: 1; padding-right: 10px; margin-right: 10px; }
   .hero-facts strong { font-size: 20px; }
   .voice-section { padding-top: 60px; }
-  .movie-ai-block { margin-bottom: 60px; padding: 25px 0 0; gap: 20px; transform: translateY(-6px); }
+  .movie-ai-block { margin-bottom: 60px; padding: 22px 18px; gap: 20px; border-radius: 22px; transform: translateY(-6px); }
   .voice-cast-surface::before, .voice-cast-surface::after { top: -22px; }
-  .movie-ai-eyebrow { margin-bottom: 17px; }
-  .movie-ai-content h2 { font-size: clamp(38px, 12vw, 48px); }
-  .movie-ai-lead { margin-top: 21px; font-size: 16px; }
-  .movie-ai-form { padding: 9px; border-radius: 18px; }
-  .movie-ai-form textarea { min-height: 96px; padding: 15px 16px; font-size: 15px; }
-  .movie-ai-form-footer { align-items: stretch; flex-direction: column; padding: 11px 5px 3px 10px; gap: 11px; }
-  .movie-ai-form-footer small { max-width: none; }
-  .movie-ai-form-footer button { justify-content: center; }
+  .movie-ai-label { margin-bottom: 13px; }
+  .movie-ai-content h2 { font-size: clamp(31px, 9.5vw, 40px); white-space: normal; }
+  .movie-ai-lead { margin-top: 14px; font-size: 14px; }
+  .movie-ai-command { min-height: 58px; padding: 5px; grid-template-columns: 36px minmax(0, 1fr) auto; gap: 4px; border-radius: 16px; }
+  .movie-ai-sparkle { width: 36px; height: 36px; border-radius: 11px; }
+  .movie-ai-form textarea { min-height: 40px; padding: 10px 5px; font-size: 14px; }
+  .movie-ai-prompt { inset: 10px 5px auto; font-size: 14px; }
+  .movie-ai-command button { min-height: 42px; padding-inline: 13px; }
+  .movie-ai-helper { margin-left: 8px; }
   .section-intro h2, .comments-heading h2 { font-size: 39px; }
-  .dubbing-tabs { display: flex; overflow-x: auto; margin: 0 -14px 18px; padding: 0 14px 5px; border-radius: 0; scrollbar-width: none; }
-  .dubbing-tabs::-webkit-scrollbar { display: none; }
-  .dubbing-tabs button { min-width: 270px; min-height: 95px; }
   .role-grid { gap: 12px; }
   .role-card { padding: 10px; border-radius: 20px; }
   .portrait-pair { height: 228px; gap: 5px; }
