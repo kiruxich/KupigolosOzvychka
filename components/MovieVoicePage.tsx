@@ -3,15 +3,6 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { getMovieDubbings, type FeaturedRole, type MovieVoiceData } from "@/data/movie-types";
 
-const defaultAiRecommendations = [
-  { title: "Человек-паук: Нет пути домой", rating: "7.9", poster: "https://image.tmdb.org/t/p/w500/qad0kyRLHG1Qccp2A0YCCUbvhiD.jpg", href: "https://info.kupigolos.ru/film/chelovek-pauk-net-puti-domoj-2021/" },
-  { title: "Мстители", rating: "8.1", poster: "https://image.tmdb.org/t/p/w500/ztkYgL0zHJLnEPY5VabK9OlmXxx.jpg", href: "https://info.kupigolos.ru/film/mstiteli-2012/" },
-  { title: "Аватар: Пламя и пепел", rating: "7.6", poster: "https://image.tmdb.org/t/p/w500/kpxYvaCnbRi7btNnpLCJrehy77e.jpg", href: "https://info.kupigolos.ru/film/avatar-plamya-i-pepel-2025/" },
-  { title: "Проект «Конец света»", rating: "8.6", poster: "https://image.tmdb.org/t/p/w500/jucD9FzLjVsFfBiFcSdoLa6rPOl.jpg", href: "https://info.kupigolos.ru/film/proekt-konec-sveta-2026/" },
-  { title: "Вот это драма!", rating: "6.9", poster: "https://image.tmdb.org/t/p/w500/mayjUmmXGM1n5E5AJnOfylig10W.jpg", href: "https://info.kupigolos.ru/film/vot-ehto-drama-2026/" },
-  { title: "Побег из Шоушенка", rating: "8.7", poster: "https://image.tmdb.org/t/p/w500/yvmKPlTIi0xdcFQIFcQKQJcI63W.jpg", href: "https://info.kupigolos.ru/film/pobeg-iz-shoushenka-1994/" },
-];
-
 function Icon({ name, size = 20 }: { name: "play" | "pause" | "phone" | "heart" | "menu" | "arrow" | "mic" | "search" | "wave" | "film"; size?: number }) {
   const paths = {
     play: <path d="M8 5v14l11-7L8 5Z" fill="currentColor" stroke="none" />,
@@ -210,13 +201,8 @@ function DubbingOverview({ kind, title, description, query, onQuery, count, tota
   );
 }
 
-function MovieAiSearch({ movie }: { movie: MovieVoiceData }) {
+function MovieAiSearch() {
   const [query, setQuery] = useState("");
-  const [recommendationStart, setRecommendationStart] = useState(0);
-  const recommendations = movie.aiRecommendations?.length ? movie.aiRecommendations : defaultAiRecommendations;
-  const visibleRecommendations = recommendations.length > 0
-    ? [0, 1, 2].map((offset) => recommendations[(recommendationStart + offset) % recommendations.length])
-    : [];
 
   function submit(event: FormEvent) {
     event.preventDefault();
@@ -228,42 +214,12 @@ function MovieAiSearch({ movie }: { movie: MovieVoiceData }) {
         <p className="movie-ai-eyebrow">MOVIE AI</p>
         <h2 id="movie-ai-title">Что посмотреть<br />сегодня?</h2>
         <p className="movie-ai-lead">Найдите фильм или сериал под настроение, компанию и ваши пожелания.</p>
-        <form className="movie-ai-form" onSubmit={submit}>
-          <label className="sr-only" htmlFor="movie-ai-query">Опишите, что хотите посмотреть</label>
-          <textarea id="movie-ai-query" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Например: хочу напряжённый детектив без мистики и с неожиданной концовкой…" rows={3} />
-          <div className="movie-ai-form-footer"><small>Можно описать настроение, сюжет или любимый фильм</small><button type="submit">Подобрать <Icon name="arrow" size={17} /></button></div>
-        </form>
       </div>
-      <div className="movie-ai-recommendations" aria-label="Популярные фильмы сейчас">
-        <div className="movie-ai-poster-stage">
-          {visibleRecommendations.map((recommendation, index) => (
-            <a
-              className={`movie-ai-poster movie-ai-poster-${index}`}
-              href={recommendation.href}
-              key={`${recommendation.title}-${recommendation.rating}`}
-              aria-label={`${recommendation.title}, рейтинг ${recommendation.rating}`}
-            >
-              <img src={recommendation.poster} alt={`Постер: ${recommendation.title}`} loading={index === 1 ? "eager" : "lazy"} decoding="async" />
-              <span>★ {recommendation.rating}</span>
-            </a>
-          ))}
-        </div>
-        <p>Сейчас смотрят</p>
-        <button
-          className="movie-ai-carousel-arrow movie-ai-carousel-arrow-prev"
-          type="button"
-          aria-label="Предыдущие постеры"
-          onClick={() => setRecommendationStart((current) => recommendations.length ? (current - 1 + recommendations.length) % recommendations.length : 0)}
-          disabled={recommendations.length < 2}
-        >←</button>
-        <button
-          className="movie-ai-carousel-arrow movie-ai-carousel-arrow-next"
-          type="button"
-          aria-label="Следующие постеры"
-          onClick={() => setRecommendationStart((current) => recommendations.length ? (current + 1) % recommendations.length : 0)}
-          disabled={recommendations.length < 2}
-        >→</button>
-      </div>
+      <form className="movie-ai-form" onSubmit={submit}>
+        <label className="sr-only" htmlFor="movie-ai-query">Опишите, что хотите посмотреть</label>
+        <textarea id="movie-ai-query" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Например: хочу напряжённый детектив без мистики и с неожиданной концовкой…" rows={3} />
+        <div className="movie-ai-form-footer"><small>Можно описать настроение, сюжет или любимый фильм</small><button type="submit">Подобрать <Icon name="arrow" size={17} /></button></div>
+      </form>
     </section>
   );
 }
@@ -337,7 +293,7 @@ function VoiceCast({ movie }: { movie: MovieVoiceData }) {
 
   return (
     <section className="voice-section wrap" id="voice-cast">
-      <MovieAiSearch movie={movie} />
+      <MovieAiSearch />
       <div className="voice-cast-surface">
         <div className="section-intro">
           <div><p className="eyebrow">ПРОВЕРЕННЫЕ ДАННЫЕ ОБ ОЗВУЧКЕ</p><h2>Актёры русского дубляжа</h2></div>

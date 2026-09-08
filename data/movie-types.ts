@@ -68,7 +68,7 @@ export type MovieVoiceData = {
 };
 
 export function getMovieDubbings(movie: MovieVoiceData): DubbingVersion[] {
-  if (movie.dubbings?.length) return movie.dubbings;
+  if (movie.dubbings?.length) return movie.dubbings.slice(0, 1);
 
   const versions: DubbingVersion[] = [];
 
@@ -80,17 +80,6 @@ export function getMovieDubbings(movie: MovieVoiceData): DubbingVersion[] {
       featuredCount: movie.primaryDubbing.featured.length,
       roles: [...movie.primaryDubbing.featured, ...movie.primaryDubbing.secondary],
       additionalVoices: movie.primaryDubbing.additionalVoices,
-    });
-  }
-
-  if (movie.alternativeDubbing?.roles.length) {
-    versions.push({
-      id: "alternative",
-      label: movie.alternativeDubbing.label,
-      year: movie.alternativeDubbing.year,
-      featuredCount: movie.alternativeDubbing.featuredCount,
-      roles: movie.alternativeDubbing.roles,
-      additionalVoices: [],
     });
   }
 

@@ -349,16 +349,6 @@ function parseVoicePageData(html, url, info) {
     additionalVoices,
   }];
 
-  $(".place-addon").each((index, addon) => {
-    const heading = clean($(addon).children("h2").first().text());
-    const year = Number(heading.match(/\b(19|20)\d{2}\b/)?.[0] ?? 0) || undefined;
-    const label = clean(heading.replace(/[,\s]+(19|20)\d{2}\s*$/, "")) || `Версия ${index + 2}`;
-    const compactRoles = $(addon).find(".roles__item-name").map((_, element) => parseRoleLine($, element)).get();
-    if (!compactRoles.length) return;
-    const roles = compactRoles.map((role) => compactToRole(role, allKnown, info.backdrop || info.poster));
-    versions.push({ id: `version-${index + 2}`, label, year, featuredCount: Math.min(8, roles.length), roles, additionalVoices: [] });
-  });
-
   const oldTitle = clean($(".s-place__name").first().text());
   const oldGenres = $(".s-place__left .s-place__more").map((_, element) => clean($(element).text())).get().filter((text) => text && !text.startsWith("Страна:"));
   const oldCountry = clean($(".s-place__left .s-place__more").filter((_, element) => clean($(element).text()).startsWith("Страна:")).first().text().replace(/^Страна:\s*/, ""));

@@ -354,7 +354,11 @@ const movies: Record<string, MovieVoiceData> = Object.fromEntries(generatedMovie
 movies[shawshankMovie.slug] = shawshankMovie;
 
 export function getMovieBySlug(slug: string) {
-  return movies[slug];
+  const movie = movies[slug];
+  if (!movie) return undefined;
+
+  const { alternativeDubbing: _alternativeDubbing, aiRecommendations: _aiRecommendations, ...kupigolosMovie } = movie;
+  return kupigolosMovie;
 }
 
 export function getAllMovieSlugs() {
